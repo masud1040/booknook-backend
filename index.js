@@ -317,6 +317,7 @@ app.post("/borrows", verifyToken, async (req, res) => {
   }
 
   const borrowData = {
+
     bookId,
     bookTitle: book.title,
     bookImage: book.image,
@@ -358,6 +359,7 @@ app.post("/borrows", verifyToken, async (req, res) => {
 });
 
 // GET MY BORROWS
+
 app.get("/borrows/:email", verifyToken, async (req, res) => {
   // Use verified email, not URL email
   const result = await borrowsCollection
@@ -367,6 +369,7 @@ app.get("/borrows/:email", verifyToken, async (req, res) => {
 
   res.send(result);
 });
+
 
 // RETURN BOOK
 app.delete("/borrows/:id", verifyToken, async (req, res) => {
