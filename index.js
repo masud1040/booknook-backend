@@ -338,7 +338,7 @@ app.post("/borrows", verifyToken, async (req, res) => {
 
   if (updateResult.modifiedCount === 0) {
     return res.status(400).send({
-      message: "Book is no longer available!",
+      message: "Book is no longer available",
     });
   }
 
@@ -359,7 +359,7 @@ app.post("/borrows", verifyToken, async (req, res) => {
 
 // GET MY BORROWS
 app.get("/borrows/:email", verifyToken, async (req, res) => {
-  // Use verified email, not URL email
+
   const result = await borrowsCollection
     .find({ userEmail: req.user.email })
     .sort({ borrowDate: -1 })
@@ -380,7 +380,7 @@ app.delete("/borrows/:id", verifyToken, async (req, res) => {
 
   // Find borrow belonging to logged-in user
   const borrow = await borrowsCollection.findOne({
-    
+
     _id: new ObjectId(id),
     userEmail: req.user.email,
   });
