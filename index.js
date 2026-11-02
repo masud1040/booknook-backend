@@ -317,7 +317,6 @@ app.post("/borrows", verifyToken, async (req, res) => {
   }
 
   const borrowData = {
-
     bookId,
     bookTitle: book.title,
     bookImage: book.image,
@@ -359,7 +358,6 @@ app.post("/borrows", verifyToken, async (req, res) => {
 });
 
 // GET MY BORROWS
-
 app.get("/borrows/:email", verifyToken, async (req, res) => {
   // Use verified email, not URL email
   const result = await borrowsCollection
@@ -369,7 +367,6 @@ app.get("/borrows/:email", verifyToken, async (req, res) => {
 
   res.send(result);
 });
-
 
 // RETURN BOOK
 app.delete("/borrows/:id", verifyToken, async (req, res) => {
@@ -383,6 +380,7 @@ app.delete("/borrows/:id", verifyToken, async (req, res) => {
 
   // Find borrow belonging to logged-in user
   const borrow = await borrowsCollection.findOne({
+    
     _id: new ObjectId(id),
     userEmail: req.user.email,
   });
@@ -408,7 +406,8 @@ app.delete("/borrows/:id", verifyToken, async (req, res) => {
   res.send(result);
 });
 
-// SERVER STATUS
+
+
 app.get("/", (req, res) => {
   res.send({
     message: "BookNook server is running fine!",
